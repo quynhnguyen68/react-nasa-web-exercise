@@ -1,0 +1,13 @@
+.button {
+    background-color: transparent;
+    height: 60px;
+    width: 60px;
+    border: 1px #DFDFDF solid;
+    border-radius: 4px;
+    display: inline-block;
+    
+    &:hover {
+        border-color: rgb(43, 147, 245);
+    }
+}
+

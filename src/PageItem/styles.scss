@@ -1,0 +1,37 @@
+.item-container {
+    margin: 30px 30px 50px 30px;
+    display: inline-block;
+    
+    h1 {
+        font-weight: 500;
+        margin-block-start: 10px;
+        margin-block-end: 10px;
+        word-break: break-word;
+        text-overflow: ellipsis;
+    }
+}
+
+.img-container {
+    border-radius: 5px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0px 10px 0px;
+    margin-top: 10px;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+        color: gray;
+    }
+}
+
+.button-edit {
+    margin-left: 10px;
+    margin-right: 10px;
+}

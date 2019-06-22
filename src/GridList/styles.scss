@@ -1,0 +1,16 @@
+.grid {
+   columns: 3;
+   margin-top: 200px;
+}
+
+@media (max-width: 1000px) {
+    .grid {
+        columns: 2;
+    } 
+}
+
+@media (max-width: 600px) {
+    .grid {
+        columns: 1;
+    } 
+}

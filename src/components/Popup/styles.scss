@@ -1,0 +1,18 @@
+.invisible {
+    display: none;
+}
+
+.popup {
+    display: block;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 0 0 500px 500px rgba(0,0,0,0.4);
+    border-radius: 4px;
+}
