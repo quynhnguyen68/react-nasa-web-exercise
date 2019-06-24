@@ -38,10 +38,11 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path="/" exact component={MyListPage} />
             <Route path="/search" component={SearchPage} />
+            <Route component={() => (<div>404 Not found </div>)} />
           </Switch>
         </Router>
       </div>
