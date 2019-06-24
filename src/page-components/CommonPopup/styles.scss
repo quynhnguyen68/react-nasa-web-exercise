@@ -1,0 +1,56 @@
+.common-popup {
+   height: 250px; 
+   z-index: 200;
+   display: inline-flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+.icon {
+    margin-top: 40px;
+    width: 64px;
+    height: 64px;
+    background-color: unset;
+}
+
+.text-content {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+}
+
+.btn-container {
+    justify-content: center;
+    bottom: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.button-yes {
+    margin-right: 10px;
+    border: none;
+    background-color:  rgb(43, 147, 245);
+    p {
+        color: white
+    }
+}
+
+.button-popup {
+    height: 50px;
+    width: 120px;
+    p {
+        font-weight: bold;
+        font-size: 16px;
+    }
+}
+
+.button-no {
+    margin-left: 10px;
+    &:hover {
+        border-color: rgb(43, 147, 245);
+        p {
+            color: rgb(43, 147, 245);
+        }
+    }
+}

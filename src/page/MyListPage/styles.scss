@@ -1,0 +1,16 @@
+.button-to-search {
+    border: none;
+    width: 180px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: rgb(43, 147, 245);
+    p {
+        color: white;
+    }
+
+    &:hover{
+        transform: scale(1.1);
+        transition: 0.5s;
+    }
+}

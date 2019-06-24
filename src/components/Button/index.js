@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { throttle } from 'lodash';
 import './styles.scss';
 
 const Button =  (props) => {
-const { onClick, btnClassName, children, imageUrl, ...more } = props;
+const { onClick, btnClassName, iconClassName, children, imageUrl, ...more } = props;
   return (
     <button 
         className={`button ${btnClassName}`}
-        onClick={onClick} 
+        onClick={throttle(onClick, 350)} 
         {...more}
     >
-        {imageUrl && <img src={imageUrl} alt="" />}
+        {imageUrl && <img src={imageUrl} className={iconClassName} alt="" />}
         {children}
     </button>
   );

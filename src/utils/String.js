@@ -14,4 +14,17 @@ export default class StringUtil {
     const formattedDate =  months[currentDate.getMonth()] + "-" + currentDate.getDate() + "-" + currentDate.getFullYear()
     return formattedDate;
   }
+
+  static checkAutoComplete(item, query) {
+    const newQuery = query.split(' ');
+    if (!query || newQuery.length === 1) {
+      return item.indexOf(newQuery[0]) !== -1;
+    }
+    const { length } = newQuery;
+    let valid = item.indexOf(newQuery[0]) !== -1;
+    for (let i = 1; i < length; i++) {
+      valid = valid && item.indexOf(newQuery[i]) !== -1;
+    }
+    return valid;
+  }
 }

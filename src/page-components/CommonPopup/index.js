@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../App.css';
-import { Icon, Popup, Button } from '../components';
-import { ImageUtil } from '../utils';
-import '../theme/Styles.scss';
+import { Icon, Popup, Button } from '../../components';
+import '../../theme/Styles.scss';
 import './styles.scss';
-
 
 class CommonPopup extends Component {
     static propTypes = {
       content: PropTypes.string,
+      showButton: PropTypes.bool,
     }
 
     static defaultTypes = {
       content:"",
+      showButton: false,
     }
     
     constructor(props){
@@ -39,21 +38,21 @@ class CommonPopup extends Component {
     }
 
     render(){
-        const { content, icon, onYesPress} = this.props;
+        const { content, icon, onYesPress, showButton } = this.props;
         const { isVisible } = this.state;
         return (
             <Popup
-                popupClassMame=""
+                popupClassName="common-popup"
                 isVisible={isVisible}
             >
                 {icon && <Icon 
-                    src={ImageUtil.isAvailableUrl(data && data.links && data.links[0].href)} 
-                    imgClassName="shadow-item img-container"
+                    src={icon} 
+                    imgClassName="icon"
                 />}
-                <div className="multiline-text">
+                <div className="text-content">
                   {content}
                 </ div>
-                <div className="button-container">
+                {showButton && <div className="button-container btn-container">
                     <Button
                        btnClassName="button-popup button-yes"
                        onClick={onYesPress} 
@@ -61,12 +60,12 @@ class CommonPopup extends Component {
                         <p>Confirm</p>
                     </Button>
                     <Button
-                       btnClassName="button-popup"
+                       btnClassName="button-popup button-no"
                        onClick={this.close} 
                     >
                         <p>Cancel</p>
                     </Button>
-                </div>
+                </div>}
             </Popup>
         );
     }

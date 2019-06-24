@@ -1,0 +1,32 @@
+h1 {
+    color: gray;
+    font-size: 50px;
+    text-align: center;
+}
+
+.loader-container {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.button-back {
+    border: none;
+    width: 180px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: rgb(43, 147, 245);
+    p {
+        color: white;
+    }
+
+    &:hover{
+        transform: scale(1.1);
+        transition: 0.5s;
+    }
+}

@@ -1,14 +1,7 @@
 .container {
-    position: fixed;
     background-color: white;
     width: 100%;
     z-index: 2;
-    
-    h1 {
-        color: gray;
-        font-size: 50px;
-        margin-left: 30px;
-    }
 }
 
 .search-container {
@@ -26,14 +19,4 @@
     margin-right: 20px;
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
-
-.loader-container {
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
 }

@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PageItem from './PageItem';
-import SearchInput from './SearchInput';
-import GridList from './GridList';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MyListPage from './page/MyListPage';
+import SearchPage from './page/SearchPage';
 import { setup as setupApi } from './sagas/apis';
+import { saveItemsList } from './actions';
 import store from './store';
-import { saveItemsList, removeItem } from'./actions';
-import FormPopup from './FormPopup';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedData: {},
-    }
-
     this._onStoreChange = this._onStoreChange.bind(this);
-    this._removeItem = this._removeItem.bind(this);
-    this._editItem = this._editItem.bind(this);
-    this.renderItem = this.renderItem.bind(this);
     this.bootstrap();
   }
 
@@ -34,23 +25,7 @@ class App extends Component {
   }
 
   componentWillUnmount(){
-    this.subscribe();
-  }
-
-  _removeItem(index){
-    const { items } = this.props;
-    if(index !== -1){
-      items.splice(index, 1);
-      store.dispatch(removeItem());
-      this.forceUpdate();
-    }
-  }
-
-  _editItem(data){
-    this.setState({
-      selectedData: data,
-    });
-    this._editPopup.open(data);
+    this.unsubscribe();
   }
 
   _onStoreChange(){
@@ -60,41 +35,19 @@ class App extends Component {
     }
   }
 
-  renderItem(item, index) {
-    return(
-      <PageItem 
-        key={index.toString()}
-        index={index}
-        data={item}
-        onRemoveItem={this._removeItem}
-        onEditItem={this._editItem}
-      />
-    );
-  }
-
   render(){
-    const { items } = this.props;
     return (
       <div className="App">
-        <SearchInput />
-        <GridList 
-          data={items}
-          renderItem={this.renderItem}
-        />
-        <FormPopup 
-          ref={(popup => { this._editPopup = popup})}
-          onYesPress={() => this.forceUpdate()}
-        />
+        <Router>
+          <Switch>
+            <Route path="/" exact component={MyListPage} />
+            <Route path="/search" component={SearchPage} />
+          </Switch>
+        </Router>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ items: state.items });
-const MappedStoreComponent = connect(
-  mapStateToProps,
-  {},
-)(App);
-
-export default MappedStoreComponent;
+export default App;
 

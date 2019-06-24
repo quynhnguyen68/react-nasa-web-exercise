@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import items from './items';
+import searchItems from './searchItems';
+import items from './listItems';
 
 const rootReducer = combineReducers({
   items,
+  searchItems,
 });
   
 export default rootReducer;

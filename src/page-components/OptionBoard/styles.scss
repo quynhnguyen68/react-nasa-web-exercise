@@ -1,0 +1,60 @@
+.option-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-left: 11%;
+}
+
+.img-container {
+    border-radius: 5px;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+        color: gray;
+    }
+}
+
+.button-up {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.button-favourite {
+    width: 180px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    p {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+}
+
+.btn-hide {
+    p {
+        color: #C8C8C8;
+    }
+}
+
+.btn-show {
+    border-color: transparent;
+    background-color: rgb(255, 38, 74);
+    p {
+        color: white;
+    }
+}
+
+.button-active {
+    border-color: transparent;
+    background-color: rgb(43, 147, 245);
+}
+
+.text-error{
+    color: red;
+    margin-left: 10px;
+}

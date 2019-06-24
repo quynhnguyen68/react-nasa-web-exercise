@@ -4,8 +4,6 @@ import './styles.scss';
 
 class ItemList extends Component {
   static propTypes = {
-    // columns: PropTypes.number.isRequired,
-    // gap: PropTypes.number.isRequired,
     data: PropTypes.arrayOf(PropTypes.shape),
   }
 

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Popup, Button, TextInput, TextArea } from '../components';
-import '../theme/Styles.scss';
+import { Popup, Button, TextInput, TextArea } from '../../components';
 import './styles.scss';
-import theme from '../theme';
-import store from '../store';
-import { editItem } from '../actions';
+import theme from '../../theme';
+import store from '../../store';
+import '../../theme/Styles.scss';
 
 class FormPopup extends Component {
     static propTypes = {
@@ -35,13 +34,12 @@ class FormPopup extends Component {
 
     open(info) {
         this._selectedData = info;
-        const detail = info && info.data && info.data[0];
         this.setState({
             isVisible: true,
-            image: info && info.links && info.links[0].href,
-            title: detail && detail.title,
-            center: detail && detail.center,
-            description: detail && detail.description,
+            image: info.imageUrl,
+            title: info.title,
+            center: info.center,
+            description: info.description,
         });
     }
 
@@ -67,25 +65,13 @@ class FormPopup extends Component {
         if (this._selectedData){
             const newData = {
                 ...this._selectedData,
-                data: [
-                    {
-                        ...this._selectedData.data[0],
-                        title,
-                        center,
-                        description,
-                    }
-                ],
-                links: [
-                    {
-                        ...this._selectedData.links[0],
-                        href: image,
-                    }
-                ]
+                title,
+                center,
+                description,
+                imageUrl: image,
             };
 
-            Object.assign(this._selectedData, newData);
-            store.dispatch(editItem());
-            this.props.onYesPress();
+            this.props.onYesPress(newData);
             this.close();
         }
     }
