@@ -16,7 +16,7 @@ export default function (state = [], action) {
         return [];
       case Types.UI_RE_REMOVE_ITEM:
         return state.map(item => (item.id === action.item.id) 
-        ? { ...action.item, isAdded: false } : item);
+        ? { ...action.item, isAdded: false, isFavourite: false } : item);
       case Types.UI_RE_ADD_ITEM:
       default:
         return state;
