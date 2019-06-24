@@ -12,6 +12,7 @@ class App extends Component {
     super(props);
     this._onStoreChange = this._onStoreChange.bind(this);
     this.bootstrap();
+    console.log('test', process.env.PUBLIC_URL);
   }
 
   componentDidMount(){
