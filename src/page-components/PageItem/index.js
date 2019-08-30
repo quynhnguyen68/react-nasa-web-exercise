@@ -12,7 +12,7 @@ class Item extends Component {
       onRemoveItem: PropTypes.func,
       onAddItem: PropTypes.func,
       onToggleFavoriteItem: PropTypes.func,
-      isFavourite: PropTypes.bool,
+      isFavorite: PropTypes.bool,
       index: PropTypes.number,
     }
 
@@ -21,19 +21,19 @@ class Item extends Component {
       onRemoveItem: () => {},
       onAddItem: () => {},
       onToggleFavoriteItem: () => {},
-      isFavourite: false,
+      isFavorite: false,
       index: 0,
     }
     
     constructor(props){
       super(props);
-      this._toggleFavourite = this._toggleFavourite.bind(this);
+      this._toggleFavorite = this._toggleFavorite.bind(this);
       this._onRemovePress = this._onRemovePress.bind(this);
       this._onEditPress = this._onEditPress.bind(this);
       this._onAddPress = this._onAddPress.bind(this);
     }
 
-    _toggleFavourite(){  
+    _toggleFavorite(){  
       const { data, onToggleFavoriteItem } = this.props;
       onToggleFavoriteItem(data);
     }
@@ -61,7 +61,6 @@ class Item extends Component {
                 <Icon 
                     src={ImageUtil.isAvailableUrl(data.imageUrl)} 
                     imgClassName="shadow-item img-container"
-                    loading="lazy" 
                  />
                 <div className="info-container">
                   <p>{data.center}</p>
@@ -74,8 +73,8 @@ class Item extends Component {
                 {!onAddItem ? 
                 <div className="button-container">
                   <Button 
-                    imageUrl={data.isFavourite ? theme.Image.ActiveFavourite : theme.Image.Favourite} 
-                    onClick={this._toggleFavourite} 
+                    imageUrl={data.isFavorite ? theme.Image.ActiveFavorite : theme.Image.Favorite} 
+                    onClick={this._toggleFavorite} 
                   />
                   <Button 
                     imageUrl={theme.Image.Edit}

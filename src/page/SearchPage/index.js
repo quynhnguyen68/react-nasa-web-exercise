@@ -62,7 +62,7 @@ class SearchPage extends Component {
     const { searchItems } = this.props;
     const { loading } = this.state;
     return (
-      <div className="App">
+      <div className="app">
         <h1>Search from NASA</h1>
         <SearchInput 
           onPressSearch={this._onPressSearch}

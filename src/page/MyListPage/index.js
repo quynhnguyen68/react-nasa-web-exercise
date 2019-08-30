@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { PageItem, GridList, SearchInput, 
   FormPopup, CommonPopup, OptionBoard } from '../../page-components';
 import { Button } from '../../components';
-import { removeItem, toggleFavouriteItem, editItem } from 'actions';
+import { removeItem, toggleFavoriteItem, editItem } from 'actions';
 import store from '../../store';
 import navigator from '../../navigator';
 import { StringUtil } from '../../utils';
@@ -17,7 +17,7 @@ class MyListPage extends Component {
     this.state = {
       selectedData: {},
       filteredData: props.items || [],
-      isShowFavourite: false,
+      isShowFavorite: false,
       query: '',
     };
 
@@ -28,9 +28,9 @@ class MyListPage extends Component {
     this._editItem = this._editItem.bind(this);
     this._openRemovePopup = this._openRemovePopup.bind(this);
     this._openEditPopup = this._openEditPopup.bind(this);
-    this._toggleFavourite = this._toggleFavourite.bind(this);
+    this._toggleFavorite = this._toggleFavorite.bind(this);
     this._onTextChange = this._onTextChange.bind(this);
-    this._onShowFavourite = this._onShowFavourite.bind(this);
+    this._onShowFavorite = this._onShowFavorite.bind(this);
     this._onOptionChange = this._onOptionChange.bind(this);
     this.renderItem = this.renderItem.bind(this);
   }
@@ -49,8 +49,8 @@ class MyListPage extends Component {
       this._item = items;
       let filteredData;
 
-      if(this.state.isShowFavourite){
-        filteredData = items.filter(item => item.isFavourite);
+      if(this.state.isShowFavorite){
+        filteredData = items.filter(item => item.isFavorite);
       } else {
         filteredData = items;
       }
@@ -94,10 +94,10 @@ class MyListPage extends Component {
     });
   }
 
-  _toggleFavourite(data){
-      const tempData = { ...data, isFavourite: !data.isFavourite }
+  _toggleFavorite(data){
+      const tempData = { ...data, isFavorite: !data.isFavorite }
       Object.assign(data, tempData);
-      this.props.toggleFavouriteItem();
+      this.props.toggleFavoriteItem();
       this.forceUpdate();
   }
 
@@ -135,17 +135,17 @@ class MyListPage extends Component {
     });
   }
 
-  _onShowFavourite(isShowFavourite){
+  _onShowFavorite(isShowFavorite){
     const { items } = this.props;
     let { filteredData } = this.state;
-    if(isShowFavourite){
-      filteredData = items.filter(item => item.isFavourite);
+    if(isShowFavorite){
+      filteredData = items.filter(item => item.isFavorite);
     } else {
       filteredData = items;
     }
 
     this.setState({
-      isShowFavourite,
+      isShowFavorite,
       filteredData,
     });
   }
@@ -158,7 +158,7 @@ class MyListPage extends Component {
         data={item}
         onRemoveItem={this._openRemovePopup}
         onEditItem={this._openEditPopup}
-        onToggleFavoriteItem={this._toggleFavourite}
+        onToggleFavoriteItem={this._toggleFavorite}
       />
     );
   }
@@ -166,7 +166,7 @@ class MyListPage extends Component {
   render(){
     const { filteredData } = this.state;
     return (
-      <div className="App">
+      <div className="app">
         <h1>My NASA Collection</h1>
         <SearchInput
           onTextChange={this._onTextChange}
@@ -174,7 +174,7 @@ class MyListPage extends Component {
         />
 
         <OptionBoard
-          onShowFavourite={this._onShowFavourite}
+          onShowFavorite={this._onShowFavorite}
           onOptionChange={this._onOptionChange}
         />
 
@@ -210,7 +210,7 @@ class MyListPage extends Component {
 const mapStateToProps = state => ({ items: state.items });
 const MappedStoreComponent = connect(
   mapStateToProps,
-  { removeItem, toggleFavouriteItem, editItem },
+  { removeItem, toggleFavoriteItem, editItem },
 )(MyListPage);
 
 export default MappedStoreComponent;

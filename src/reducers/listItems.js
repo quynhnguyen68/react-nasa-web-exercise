@@ -13,7 +13,7 @@ export default function (state = [], action) {
         return state;
       case Types.UI_RE_RESET_ITEMS_LIST:
         return [];
-      case Types.UI_RE_TOGGLE_FAVOURITE_ITEM:
+      case Types.UI_RE_TOGGLE_FAVORITE_ITEM:
       case Types.UI_RE_EDIT_ITEM:    
       default:
         return state;

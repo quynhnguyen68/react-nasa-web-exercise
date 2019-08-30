@@ -22,34 +22,34 @@ const options = [
 class OptionBoard extends Component {
     static propTypes = {
       onOptionChange: PropTypes.func,
-      onShowFavourite: PropTypes.func,
+      onShowFavorite: PropTypes.func,
     }
 
     static defaultTypes = {
-      onShowFavourite: () => {},
+      onShowFavorite: () => {},
       onOptionChange: () => {},
     }
     
     constructor(props){
       super(props);
       this.state = {
-        showFavourite: false,
+        showFavorite: false,
         sortOption: '',
         sortType: options[0],
         error: '',
       }
 
-      this._toggleMyFavourite = this._toggleMyFavourite.bind(this);
+      this._toggleMyFavorite = this._toggleMyFavorite.bind(this);
       this._onOptionChange = this._onOptionChange.bind(this);
       this._onTypeChange = this._onTypeChange.bind(this);
     }
 
-    _toggleMyFavourite(){
+    _toggleMyFavorite(){
       this.setState({
-        showFavourite: !this.state.showFavourite,
+        showFavorite: !this.state.showFavorite,
       });
-      const { showFavourite } = this.state;
-      this.props.onShowFavourite(!showFavourite);
+      const { showFavorite } = this.state;
+      this.props.onShowFavorite(!showFavorite);
     }
 
     _onOptionChange(value){
@@ -57,7 +57,7 @@ class OptionBoard extends Component {
         this.setState({
           sortOption: value,
           error: '',
-          showFavourite: false,
+          showFavorite: false,
         });
         
         this.props.onOptionChange(this.state.sortType, value);
@@ -78,15 +78,15 @@ class OptionBoard extends Component {
     }
 
     render(){
-        const { showFavourite, sortOption, error } = this.state;
+        const { showFavorite, sortOption, error } = this.state;
         return (
           <div className="option-container">
             <Button 
-              btnClassName={`button-favourite ${showFavourite ? "btn-show": "btn-hide"}`}
-              imageUrl={showFavourite ? theme.Image.LikeWhite : theme.Image.Favourite} 
-              onClick={this._toggleMyFavourite} 
+              btnClassName={`button-favorite ${showFavorite ? "btn-show": "btn-hide"}`}
+              imageUrl={showFavorite ? theme.Image.LikeWhite : theme.Image.Favorite} 
+              onClick={this._toggleMyFavorite} 
             >
-              <p>My Favourite</p>
+              <p>My Favorite</p>
             </Button>
           
             <SelectOption

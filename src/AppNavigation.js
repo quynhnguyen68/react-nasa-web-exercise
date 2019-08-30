@@ -5,7 +5,6 @@ import SearchPage from './page/SearchPage';
 import { setup as setupApi } from './sagas/apis';
 import { saveItemsList } from './actions';
 import store from './store';
-import './App.css';
 
 class AppNavigation extends Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class AppNavigation extends Component {
 
   render(){
     return (
-      <div className="app">
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path="/" exact component={MyListPage} />
@@ -45,7 +43,6 @@ class AppNavigation extends Component {
             <Route component={() => (<div>404 Not found </div>)} />
           </Switch>
         </Router>
-      </div>
     );
   }
 }

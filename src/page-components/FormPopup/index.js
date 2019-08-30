@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popup, Button, TextInput, TextArea } from '../../components';

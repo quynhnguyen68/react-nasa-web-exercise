@@ -13,11 +13,13 @@ const Icon = (props) => {
 }
 
 Icon.propTypes = {
-    imgClassName: PropTypes.string,
+    imgClassName: PropTypes.string,    
+    src: PropTypes.string,
 };
 
 Icon.defaultProps = {
     imgClassName: "",
+    src: "",
 };
 
 export default Icon;

@@ -1,8 +1,14 @@
 export default class StringUtil {
+  /**
+   * @param {any} value
+   */
   static isString(value) {
     return typeof value === 'string' || value instanceof String;
   }
 
+  /**
+   * @param {any} value
+   */
   static isStringAndNotEmpty(value) {
     if (value && StringUtil.isString(value)) return true;
     return false;

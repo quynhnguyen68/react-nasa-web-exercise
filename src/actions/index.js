@@ -16,8 +16,8 @@ export const saveSearchItemsList = items => ({
     items,
 })
 
-export const toggleFavouriteItem = () => ({
-    type: Types.UI_RE_TOGGLE_FAVOURITE_ITEM,
+export const toggleFavoriteItem = () => ({
+    type: Types.UI_RE_TOGGLE_FAVORITE_ITEM,
 });
 
 export const addItem = (item) => ({

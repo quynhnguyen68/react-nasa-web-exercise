@@ -15,12 +15,16 @@ const TextArea = (props) => {
 }
  
 TextArea.propTypes = {
+    name: PropTypes.string, 
+    placeholder: PropTypes.string, 
     inputClassName: PropTypes.string,
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
 };
 
 TextArea.defaultProps = {
+    name: "",
+    placeholder: "",
     inputClassName: "",
     onChange: () => {},
     onKeyDown: () => {},

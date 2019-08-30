@@ -21,12 +21,17 @@ Button.propTypes = {
     btnClassName: PropTypes.string,
     imageUrl: PropTypes.string,
     onClick: PropTypes.func,
+    iconClassName: PropTypes.string, 
+    disabled: PropTypes.bool,
+    children: PropTypes.node,
 };
 
 Button.defaultProps = {
     btnClassName: "",
     imageUrl: "",
     onClick: () => {},
+    iconClassName: "", 
+    disabled: false,
 };
 
 export default Button;
