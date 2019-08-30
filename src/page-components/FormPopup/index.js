@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Popup, Button, TextInput, TextArea } from '../../components';
 import './styles.scss';
 import theme from '../../theme';
-import store from '../../store';
 import '../../theme/Styles.scss';
 
 class FormPopup extends Component {

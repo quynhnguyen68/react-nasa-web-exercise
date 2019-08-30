@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { PageItem, GridList, SearchInput, 
   FormPopup, CommonPopup, OptionBoard } from '../../page-components';
 import { Button } from '../../components';
-import { removeItem, toggleFavouriteItem, editItem } from'../../actions';
+import { removeItem, toggleFavouriteItem, editItem } from 'actions';
 import store from '../../store';
 import navigator from '../../navigator';
 import { StringUtil } from '../../utils';
