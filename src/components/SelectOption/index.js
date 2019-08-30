@@ -20,12 +20,4 @@ const SelectOption = (props) => {
   );
 }
 
-SelectOption.propTypes = {
-    imgClassName: PropTypes.string,
-};
-
-SelectOption.defaultProps = {
-    imgClassName: "",
-};
-
 export default SelectOption;
