@@ -4,7 +4,7 @@ import * as Types from '../actions/types';
 import store from '../store';
 import { saveSearchItemsList } from '../actions';
 
-function* getItemList(action) {
+export function* getItemList(action) {
     const { response, error } = yield call(Apis.getItemList, action.query);
   
     if(response){
