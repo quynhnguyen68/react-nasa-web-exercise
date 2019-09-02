@@ -11,7 +11,7 @@ export default function (state = [], action) {
     switch (action.type) {
       case Types.SA_RE_SAVE_SEARCH_ITEMS_LIST:
         return handleItemsList(action.items);
-      case Types.UI_SA_GET_ITEMS_LIST:
+      // case Types.UI_SA_GET_ITEMS_LIST:
       case Types.UI_RE_RESET_ITEMS_LIST:
         return [];
       case Types.UI_RE_REMOVE_ITEM:

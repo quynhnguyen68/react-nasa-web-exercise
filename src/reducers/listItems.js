@@ -1,4 +1,3 @@
-import { remove } from 'lodash';
 import * as Types from '../actions/types';
 
 export default function (state = [], action) {
@@ -6,11 +5,9 @@ export default function (state = [], action) {
       case Types.SA_RE_SAVE_ITEMS_LIST:
         return action.items;
       case Types.UI_RE_ADD_ITEM:
-        state.push(action.item);
-        return state;
+        return [...state, Object.assign({}, action.item)];
       case Types.UI_RE_REMOVE_ITEM:
-        remove(state, item => item.id === action.item.id);
-        return state;
+        return state.filter(item => item.id !== action.item.id);
       case Types.UI_RE_RESET_ITEMS_LIST:
         return [];
       case Types.UI_RE_TOGGLE_FAVORITE_ITEM:

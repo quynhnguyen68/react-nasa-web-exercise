@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Button } from '../../components';
+import { Button } from '../../components';
 import theme from '../../theme';
 import { ImageUtil, StringUtil } from '../../utils';
 import '../../theme/Styles.scss';
 import './styles.scss';
+
+const Icon = lazy(() => import('../../components/Icon'));
 
 class Item extends Component {
     static propTypes = {
@@ -58,10 +60,12 @@ class Item extends Component {
         const { data, index, onAddItem } = this.props;
         return (
             <div className="item-container" key={index.toString()}>
-                <Icon 
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Icon 
                     src={ImageUtil.isAvailableUrl(data.imageUrl)} 
                     imgClassName="shadow-item img-container"
-                 />
+                  />
+                </Suspense>
                 <div className="info-container">
                   <p>{data.center}</p>
                   <p>{StringUtil.getDateFormat(data.date_created)}</p>
