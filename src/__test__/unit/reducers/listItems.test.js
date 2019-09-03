@@ -11,7 +11,7 @@ describe('items reducer', () => {
     describe('handle ADD_ITEM', () => {
         it('Should update initial state with a list already added new item', () => {
             const addItemAction = { 
-                type: types.UI_RE_ADD_ITEM,
+                type: types.ADD_ITEM,
                 item: testItem
             };
             const expectedResult = [testItem];
@@ -21,7 +21,7 @@ describe('items reducer', () => {
 
         it('Should update current state with a list already added new item', () => {
             const addItemAction = { 
-                type: types.UI_RE_ADD_ITEM,
+                type: types.ADD_ITEM,
                 item: testItem2,
             };
 
@@ -39,7 +39,7 @@ describe('items reducer', () => {
     describe('handle REMOVE_ITEM', () => {
         it('Should update current state with a list already removed item', () => {
             const removeItemAction = { 
-                type: types.UI_RE_REMOVE_ITEM,
+                type: types.REMOVE_ITEM,
                 item: testItem2,
             };
 

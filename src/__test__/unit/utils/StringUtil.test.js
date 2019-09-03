@@ -24,10 +24,16 @@ describe('StringUtil', () => {
 
     describe('getDateFormat', () => {
         it('Should work correctly', () => {
-            expect(StringUtil.isStringAndNotEmpty('HelloWorld')).toBeTruthy();
-            expect(StringUtil.isStringAndNotEmpty('')).toBeFalsy();
-            expect(StringUtil.isStringAndNotEmpty(100.5)).toBeFalsy();
-            expect(StringUtil.isStringAndNotEmpty({ name: "Quynh"})).toBeFalsy();
+            expect(StringUtil.getDateFormat('2011-04-01T15:00:02Z')).toEqual('APR-1-2011');
+            expect(StringUtil.getDateFormat('')).toEqual('');
+        });
+    });
+
+    describe('checkAutoComplete', () => {
+        it('Should work correctly', () => {
+            const item = "Hello World"
+            expect(StringUtil.checkAutoComplete(item, 'ell')).toBeTruthy();
+            expect(StringUtil.checkAutoComplete(item, 'Ho')).toBeFalsy();
         });
     });
 });

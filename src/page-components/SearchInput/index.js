@@ -19,7 +19,7 @@ class SearchInput extends Component {
     constructor(props){
         super(props);
         this.state = {
-            searchKey: "",
+            searchKey: '',
         };
 
         this._onTextChange = this._onTextChange.bind(this);
@@ -45,6 +45,7 @@ class SearchInput extends Component {
             <div className="container">
                 <div className="search-container">
                     <TextInput
+                        data-testid="search-input"
                         name="searchKey"
                         inputClassName="input"
                         placeholder="Enter something"

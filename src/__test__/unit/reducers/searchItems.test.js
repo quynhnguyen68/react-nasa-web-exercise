@@ -1,65 +1,41 @@
 // @ts-nocheck
-import axios from 'axios';
-import { setup as setupApi } from 'services/apis';
-import MockAdapter from 'axios-mock-adapter';
-import * as actions from 'actions';
-
-setupApi();
+import searchItemsReducer from 'reducers/searchItems';
+import * as types from 'actions/types';
+import { ItemUtil } from 'utils';
 
 // Set up test
-const mockData = { 
-    collection: {
-        items: [
-            { title: 'Hello World' },
-            { title: 'Hi NASA' }
-        ] 
-    }
-};
+const initialState = [];
+const testItem = { username: "abc", password: "123123", id: 1 };
+const testItem2 = { username: "abc", password: "123123", id: 2 };
 
-describe('searched items reducer', () => {
-    describe('getItemsList', () => {
-        let mock;
-        beforeEach(() => {
-            mock = new MockAdapter(axios);
+describe('items reducer', () => {
+    describe('saveItemsList', () => {
+        it('Should update initial state new list of items', () => {
+            const saveItemsAction = { 
+                type: types.SAVE_SEARCH_ITEMS_LIST,
+                items: [testItem, testItem2]
+            };
+            const expectedResult = ItemUtil.handleItemsList([testItem, testItem2]);
+            const actualResult = searchItemsReducer(initialState, saveItemsAction);
+            expect(actualResult).toEqual(expectedResult);
         });
+    });
 
-        afterEach(() => {
-            mock.reset();
+    describe('handle REMOVE_ITEM', () => {
+        it('Should update current state with a list already removed item', () => {
+            const removeItemAction = { 
+                type: types.REMOVE_ITEM,
+                item: testItem2,
+            };
+
+            const currentState = [
+                testItem,
+                testItem2,
+            ];
+
+            const expectedResult = [ testItem, { ...testItem2, isFavorite: false, isAdded: false} ];
+            const actualResult = searchItemsReducer(currentState, removeItemAction);
+            expect(actualResult).toEqual(expectedResult);
         });
-        
-        it('Should dispatch error when receiving failed response', async done => {
-            const mockDispatch = jest.fn();
-            const query = 'hello%2019';
-            const url = `search?q=${query}`;
-            const callback = jest.fn();
-            const error = 'error';
-            mock.onGet(url).reply(500, error);
-    
-            const getItemRequest = actions.getItemsList(query, callback);
-            await getItemRequest(mockDispatch);
-
-            expect(mockDispatch).toHaveBeenCalledWith(actions.getItemsListStart());
-            expect(mockDispatch).toHaveBeenCalledWith(actions.getItemsListFail({ status: 500, data: error }));
-            done();
-        });
-
-        it('Should dispatch save items when receiving success response', async done => {
-            const mockDispatch = jest.fn();
-            const query = 'hello%2019';
-            const url = `search?q=${query}`;
-            const callback = jest.fn();
-            mock.onGet(url).reply(200, mockData);
-    
-            const getItemRequest = actions.getItemsList(query, callback);
-            await getItemRequest(mockDispatch);
-
-            expect(mockDispatch).toHaveBeenCalledWith(actions.getItemsListStart());
-            expect(mockDispatch).toHaveBeenCalledWith(
-                actions.saveSearchItemsList(mockData.collection.items)
-            );
-            done();
-        });
-
-
     });
 });

@@ -1,5 +1,4 @@
 import * as Types from './types';
-// import * as axios from 'sagas/apis';
 import axios from 'axios';
 
 export const saveItemsList = items => ({
@@ -8,29 +7,29 @@ export const saveItemsList = items => ({
 });
 
 export const saveSearchItemsList = items => ({
-    type: Types.SA_RE_SAVE_SEARCH_ITEMS_LIST,
+    type: Types.SAVE_SEARCH_ITEMS_LIST,
     items,
 })
 
 export const toggleFavoriteItem = () => ({
-    type: Types.UI_RE_TOGGLE_FAVORITE_ITEM,
+    type: Types.TOGGLE_FAVORITE_ITEM,
 });
 
 export const addItem = (item) => ({
-    type: Types.UI_RE_ADD_ITEM,
+    type: Types.ADD_ITEM,
     item,
 });
 
 export const editItem = () => ({
-    type: Types.UI_RE_EDIT_ITEM,
+    type: Types.EDIT_ITEM,
 });
 
 export const resetItemsList = () => ({
-    type: Types.UI_RE_RESET_ITEMS_LIST,
+    type: Types.RESET_ITEMS_LIST,
 });
 
 export const removeItem = (item) => ({
-    type: Types.UI_RE_REMOVE_ITEM,
+    type: Types.REMOVE_ITEM,
     item,
 });
 

@@ -1,23 +1,16 @@
 import * as Types from '../actions/types';
+import { ItemUtil } from 'utils';
 
-function handleItemsList(items) {
-  return items.map(item => ({
-    ...item.data && item.data[0],
-    imageUrl: item.links && item.links[0].href,
-    isFavorite: false,
-  }));
-}
 export default function (state = [], action) {
     switch (action.type) {
-      case Types.SA_RE_SAVE_SEARCH_ITEMS_LIST:
-        return handleItemsList(action.items);
+      case Types.SAVE_SEARCH_ITEMS_LIST:
+        return ItemUtil.handleItemsList(action.items);
       // case Types.UI_SA_GET_ITEMS_LIST:
-      case Types.UI_RE_RESET_ITEMS_LIST:
+      case Types.RESET_ITEMS_LIST:
         return [];
-      case Types.UI_RE_REMOVE_ITEM:
+      case Types.REMOVE_ITEM:
         return state.map(item => (item.id === action.item.id) 
         ? { ...action.item, isAdded: false, isFavorite: false } : item);
-      case Types.UI_RE_ADD_ITEM:
       default:
         return state;
     }
