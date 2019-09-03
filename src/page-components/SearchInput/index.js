@@ -45,7 +45,6 @@ class SearchInput extends Component {
             <div className="container">
                 <div className="search-container">
                     <TextInput
-                        data-testid="search-input"
                         name="searchKey"
                         inputClassName="input"
                         placeholder="Enter something"

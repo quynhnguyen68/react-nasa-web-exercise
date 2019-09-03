@@ -34,6 +34,8 @@ describe('StringUtil', () => {
             const item = "Hello World"
             expect(StringUtil.checkAutoComplete(item, 'ell')).toBeTruthy();
             expect(StringUtil.checkAutoComplete(item, 'Ho')).toBeFalsy();
+            expect(StringUtil.checkAutoComplete(item, 'Ho Wo')).toBeFalsy();
+            expect(StringUtil.checkAutoComplete(item, 'ell Wo')).toBeTruthy();
         });
     });
 });
