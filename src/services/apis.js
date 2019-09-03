@@ -8,8 +8,6 @@ export function setup() {
 }
 
 export function getItemList(query) {
-    return axios.get(`search?q=${query}`)
-      // .then(response => ({ response }))
-      // .catch(error => ({ error }));
+  return axios.get(`search?q=${query}`);
 }
   

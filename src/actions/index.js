@@ -34,25 +34,29 @@ export const removeItem = (item) => ({
     item,
 });
 
-// export const getItemsList = (query, callback) => ({
-//     type: Types.UI_SA_GET_ITEMS_LIST,
-//     query,
-//     callback,
-// });
+export const getItemsListStart = () => ({
+    type: Types.GET_ITEMS_LIST,
+});
 
-export const startItemsList = () => ({
-    type: Types.UI_SA_GET_ITEMS_LIST,
+export const getItemsListSuccess = () => ({
+    type: Types.GET_ITEMS_LIST_SUCCESS,
+});
+
+export const getItemsListFail = error => ({
+    type: Types.GET_ITEMS_LIST_FAIL,
+    error
 });
 
 export const getItemsList = (query, callback) => async dispatch => {
-    dispatch(startItemsList());
-    try{
-     
+    dispatch(getItemsListStart());
+    try {
         const response  = await axios.get(`search?q=${query}`);
         const { data } = response;
         dispatch(saveSearchItemsList(data.collection.items));
         callback(null);
     } catch(error){
         callback('Error');
+        const { status, data } = error.response;
+        dispatch(getItemsListFail({ status, data }));
     }
 };

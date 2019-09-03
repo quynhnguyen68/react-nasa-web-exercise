@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MyListPage from './page/MyListPage';
 import SearchPage from './page/SearchPage';
-import { setup as setupApi } from './sagas/apis';
+import { setup as setupApi } from './services/apis';
 import { saveItemsList } from './actions';
 import store from './store';
 
