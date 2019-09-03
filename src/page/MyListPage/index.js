@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { PageItem, GridList, SearchInput, 
   FormPopup, CommonPopup, OptionBoard } from '../../page-components';
 import { Button } from '../../components';
-import { removeItem, toggleFavoriteItem, editItem } from 'actions';
+import { removeItem, editItem } from 'actions';
 import store from '../../store';
 import navigator from '../../navigator';
 import { StringUtil } from '../../utils';
@@ -86,19 +86,15 @@ class MyListPage extends Component {
   }
 
   _editItem(newData){
-    Object.assign(this.state.selectedData, newData);
-    this.props.editItem();
-    this.forceUpdate();
+    this.props.editItem(newData);
     this.setState({
       selectedData: {},
     });
   }
 
   _toggleFavorite(data){
-      const tempData = { ...data, isFavorite: !data.isFavorite }
-      Object.assign(data, tempData);
-      this.props.toggleFavoriteItem();
-      this.forceUpdate();
+      const newData = { ...data, isFavorite: !data.isFavorite }
+      this.props.editItem(newData);
   }
 
   _onTextChange(query){
@@ -210,7 +206,7 @@ class MyListPage extends Component {
 const mapStateToProps = state => ({ items: state.items });
 const MappedStoreComponent = connect(
   mapStateToProps,
-  { removeItem, toggleFavoriteItem, editItem },
+  { removeItem, editItem },
 )(MyListPage);
 
 export default MappedStoreComponent;

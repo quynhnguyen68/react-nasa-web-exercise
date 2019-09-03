@@ -10,8 +10,9 @@ export default function (state = [], action) {
         return state.filter(item => item.id !== action.item.id);
       case Types.RESET_ITEMS_LIST:
         return [];
-      case Types.TOGGLE_FAVORITE_ITEM:
-      case Types.EDIT_ITEM:    
+      case Types.EDIT_ITEM:
+          return state.map((item) => 
+            (item.id !== action.item.id) ? item : { ...item, ...action.item });
       default:
         return state;
     }

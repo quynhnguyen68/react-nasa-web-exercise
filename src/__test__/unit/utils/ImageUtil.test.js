@@ -1,3 +1,4 @@
+// @ts-nocheck
 import theme from 'theme';
 import { ImageUtil } from 'utils';
 

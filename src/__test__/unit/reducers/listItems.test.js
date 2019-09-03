@@ -53,4 +53,26 @@ describe('items reducer', () => {
             expect(actualResult).toEqual(expectedResult);
         });
     });
+
+    describe('handle EDIT_ITEM', () => {
+        it('Should update current state with a list already removed item', () => {
+            const editItemAction = { 
+                type: types.EDIT_ITEM,
+                item: { ...testItem2, username: 'Hello', password: '456456' },
+            };
+
+            const currentState = [
+                testItem,
+                testItem2
+            ];
+
+            const expectedResult = [
+                testItem,
+                { username: 'Hello', password: '456456', id: 2 }
+            ];
+
+            const actualResult = listItemsReducer(currentState, editItemAction);
+            expect(actualResult).toEqual(expectedResult);
+        });
+    });
 });

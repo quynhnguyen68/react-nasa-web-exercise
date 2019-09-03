@@ -11,17 +11,14 @@ export const saveSearchItemsList = items => ({
     items,
 })
 
-export const toggleFavoriteItem = () => ({
-    type: Types.TOGGLE_FAVORITE_ITEM,
-});
-
 export const addItem = (item) => ({
     type: Types.ADD_ITEM,
     item,
 });
 
-export const editItem = () => ({
+export const editItem = item => ({
     type: Types.EDIT_ITEM,
+    item,
 });
 
 export const resetItemsList = () => ({
