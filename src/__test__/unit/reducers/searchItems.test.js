@@ -15,7 +15,10 @@ describe('items reducer', () => {
                 type: types.SAVE_SEARCH_ITEMS_LIST,
                 items: [testItem, testItem2]
             };
-            const expectedResult = ItemUtil.handleItemsList([testItem, testItem2]);
+
+            const mockItemUtil = jest.fn().mockImplementation(items => ItemUtil.handleItemsList(items));
+
+            const expectedResult = mockItemUtil([testItem, testItem2]);
             const actualResult = searchItemsReducer(initialState, saveItemsAction);
             expect(actualResult).toEqual(expectedResult);
         });

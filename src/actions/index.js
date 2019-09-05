@@ -1,6 +1,15 @@
 import * as Types from './types';
 import axios from 'axios';
 
+export const filter = {
+    SHOW_ALL: 'SHOW_ALL',
+    SHOW_FAVORITE: 'SHOW_FAVORITE',
+    SHOW_ASC_DATE: 'SHOW_ASC_DATE',
+    SHOW_DESC_DATE: 'SHOW_DESC_DATE',
+    SHOW_ASC_TITLE: 'SHOW_ASC_TITLE',
+    SHOW_DESC_TITLE: 'SHOW_DESC_TITLE'
+};
+
 export const saveItemsList = items => ({
     type: Types.SA_RE_SAVE_ITEMS_LIST,
     items,
@@ -56,3 +65,8 @@ export const getItemsList = (query, callback) => async dispatch => {
         dispatch(getItemsListFail({ status, data }));
     }
 };
+
+export const filterItems = filter => ({
+    type: Types.SET_VISIBILITY_FILTER,
+    filter,
+});

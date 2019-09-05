@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { orderBy } from 'lodash';
 import { connect } from 'react-redux';
 import { PageItem, GridList, SearchInput, 
   FormPopup, CommonPopup, OptionBoard } from '../../page-components';
 import { Button } from '../../components';
-import { removeItem, editItem } from 'actions';
+import { removeItem, editItem, filterItems, filter } from 'actions';
 import store from '../../store';
 import navigator from '../../navigator';
 import { StringUtil } from '../../utils';
 import theme from '../../theme';
+import { getVisibleItems } from '../../selectors/item';
 import './styles.scss';
 
 class MyListPage extends Component {
@@ -110,39 +110,31 @@ class MyListPage extends Component {
   }
 
   _onOptionChange(type, option){
-    const { items } = this.props;
-    let { filteredData } = this.state;
+    const { filterItems } = this.props;
     let sortType;
     switch(type.value){
       case 0: sortType = ''; break;
-      case 1: sortType = 'date_created'; break;
-      case 2: sortType = 'title'; break;
+      case 1: sortType = 'DATE'; break;
+      case 2: sortType = 'TITLE'; break;
       default: sortType = ''; break;
     }
 
     if(sortType && option){
-        filteredData = orderBy(items, item => item[sortType], 
-          option ==='up' ? 'asc': 'desc');     
+      filterItems(option ==='up' ? filter[`SHOW_ASC_${sortType}`] : filter[`SHOW_DESC_${sortType}`] );  
     } else {
-      filteredData = items;
+      filterItems(filter.SHOW_ALL);
     }
-    this.setState({
-      filteredData,
-    });
   }
 
+  /**
+   * @param {boolean} isShowFavorite
+   */
   _onShowFavorite(isShowFavorite){
-    const { items } = this.props;
-    let { filteredData } = this.state;
-    if(isShowFavorite){
-      filteredData = items.filter(item => item.isFavorite);
-    } else {
-      filteredData = items;
-    }
-
+    const { filterItems } = this.props;
+    filterItems(isShowFavorite ? filter.SHOW_FAVORITE : filter.SHOW_ALL);
+  
     this.setState({
       isShowFavorite,
-      filteredData,
     });
   }
 
@@ -160,7 +152,7 @@ class MyListPage extends Component {
   }
 
   render(){
-    const { filteredData } = this.state;
+    const { filteredItems } = this.props;
     return (
       <div className="app">
         <h1>My NASA Collection</h1>
@@ -175,7 +167,7 @@ class MyListPage extends Component {
         />
 
         <GridList 
-          data={filteredData}
+          data={filteredItems}
           renderItem={this.renderItem}
         />
         <FormPopup 
@@ -203,10 +195,10 @@ class MyListPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({ items: state.items });
+const mapStateToProps = state => ({ filteredItems: getVisibleItems(state) });
 const MappedStoreComponent = connect(
   mapStateToProps,
-  { removeItem, editItem },
+  { removeItem, editItem, filterItems },
 )(MyListPage);
 
 export default MappedStoreComponent;

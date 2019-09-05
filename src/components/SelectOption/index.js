@@ -20,4 +20,17 @@ const SelectOption = (props) => {
   );
 }
 
+SelectOption.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    value: PropTypes.number
+  })),
+  onChange: PropTypes.func,
+};
+
+SelectOption.defaultProps = {
+  options: [],
+  onChange: () => {}
+};
+
 export default SelectOption;
